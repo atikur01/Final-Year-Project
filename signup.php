@@ -1,7 +1,4 @@
 <?php
-   // Start the session
-   session_start();
-   
    // Include database connection
    include('dbconnect.php');
    
@@ -58,7 +55,6 @@
    
            if ($result) {
                // Registration successful
-               $_SESSION['message'] = 'Registration successful. You can now log in.';
                header('Location: login.php');
                exit();
            } else {

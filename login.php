@@ -120,7 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <li><a href="blog.html">Blog</a></li>
               <li><a href="contact.html">Contact</a></li>
               <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
-              <li class="d-lg-none"><a href="login.html">Log In</a></li>
+              <li class="d-lg-none"><a href="login.php">Log In</a></li>
+              <li class="d-lg-none"><a href="signup.php">Sign Up</a></li>
             </ul>
           </nav>
           

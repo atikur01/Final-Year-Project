@@ -71,12 +71,25 @@
             <p style="color: white;">Edit Company Profile</p>
          </a>
       </li>
+
+      <li class="nav-item">
+         <a href="../company-profile.php?company_id=<?php echo $_SESSION["id"] ?>" class="nav-link"  target="_blank">
+            <i class="nav-icon fas  fa-solid fa-arrow-right"></i>            
+            <p style="color: white;">Visit Company Profile</p>
+         </a>
+      </li>
+
+
       <li class="nav-item">
          <a href="/dashboard/post-job.php" class="nav-link">
             <i class="nav-icon fas fa-plus"></i>            
             <p style="color: white;">Post a Job</p>
          </a>
       </li>
+
+      
+
+
       <li class="nav-item">
          <a href="../logout.php" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>

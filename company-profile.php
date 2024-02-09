@@ -1,3 +1,39 @@
+<?php
+require 'dbconnect.php';
+error_reporting(0);
+
+// Check if company_id is present in the GET request
+if(isset($_GET['company_id'])) {
+    // Get the company_id from the GET request
+    $company_id = $_GET['company_id'];
+
+    // Sanitize the input to prevent SQL injection (assuming it's an integer)
+    $company_id = intval($company_id);
+
+    // Fetch company details for the specified company_id
+    $sql = "SELECT * FROM company_details WHERE company_id = $company_id";
+    $result = $conn->query($sql);
+
+    // Check if there is a result
+    if ($result->num_rows > 0) {
+        // Fetch the data
+        $row = $result->fetch_assoc();
+
+        // Close the database connection
+        $conn->close();
+
+        // Use $row data as needed
+    } else {
+        echo "No records found for company ID: $company_id";
+    }
+} else {
+    echo "Company ID not provided in the GET request.";
+}
+?>
+
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -98,18 +134,19 @@
 
     <div class="container">
   <div class="text-center mt-5">
-  <img src="images/job_logo_3.jpg" alt="Company Logo" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover;">
+  <img src="<?php echo "dashboard/" . $row['img_logo_path']; ?>" alt="Company Logo" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover;">
 
-    <h2 style="color: white;" class="mt-3">Your Company Name</h2>
-    <p style="color: white;">Address</p>
+    <h2 style="color: white;" class="mt-3"><?php echo $row['company_name']; ?></h2>
+    <p style="color: white;"><?php echo $row['address']; ?></p>
 
     <table style="color: white;" class="table">
   <thead>
     <tr>
-      <th scope="col">Type: Your Company Type</th>
-      <th scope="col">Email: Your Phone Number</th>
-      <th scope="col">Website:  atikapps.com</th>
-      <th scope="col">Established in: Year</th>
+      <th scope="col">Type: <?php echo $row['company_type']; ?></th>
+      <th scope="col">Email: <?php echo $row['email']; ?></th>
+      <th scope="col">Phone: <?php echo $row['phone_no']; ?></th>
+      <th scope="col"> <a href=<?php echo $row['website']; ?>>Visit Company Website!</a>  </th>
+      
     </tr>
   </thead></table>
 
@@ -119,17 +156,17 @@
 
   <div style="color: white;" class="mt-5">
     <h3 style="color: white;">Company Background</h3>
-    <p>Your company background goes here.</p>
+    <p><?php echo $row['company_background']; ?></p>
   </div>
 
   <div style="color: white;" class="mt-5">
     <h3 style="color: white;">Services</h3>
-    <p>Describe your services here.</p>
+    <p><?php echo $row['services']; ?></p>
   </div>
 
   <div style="color: white;" class="mt-5">
     <h3 style="color: white;">Expertise</h3>
-    <p>List your expertise or specialties here.</p>
+    <p><?php echo $row['expertise']; ?></p>
   </div>
 </div>
 

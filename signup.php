@@ -1,9 +1,7 @@
 <?php
-   // Start the session
-   session_start();
-   
    // Include database connection
    include('dbconnect.php');
+ 
    
    error_reporting(0);
    
@@ -55,10 +53,13 @@
            // Insert user data into the database
            $query = "INSERT INTO users (email, password , role) VALUES ('$email', '$hashedPassword' , '$role' )";
            $result = mysqli_query($conn, $query);
+
+           
+
+
    
            if ($result) {
                // Registration successful
-               $_SESSION['message'] = 'Registration successful. You can now log in.';
                header('Location: login.php');
                exit();
            } else {
@@ -133,7 +134,8 @@
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
-                        <li class="d-lg-none"><a href="login.html">Log In</a></li>
+                        <li class="d-lg-none"><a href="#" onclick="window.location.href='login.php'; return false;">Log In</a></li>
+                        <li class="d-lg-none"><a href="#" onclick="window.location.href='signup.php'; return false;">Sign Up</a></li>
                      </ul>
                   </nav>
                   <div class="right-cta-menu text-right d-flex aligin-items-center col-6">

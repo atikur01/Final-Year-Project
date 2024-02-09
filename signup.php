@@ -1,6 +1,7 @@
 <?php
    // Include database connection
    include('dbconnect.php');
+ 
    
    error_reporting(0);
    
@@ -52,6 +53,10 @@
            // Insert user data into the database
            $query = "INSERT INTO users (email, password , role) VALUES ('$email', '$hashedPassword' , '$role' )";
            $result = mysqli_query($conn, $query);
+
+           
+
+
    
            if ($result) {
                // Registration successful

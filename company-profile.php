@@ -1,59 +1,3 @@
-<?php
-require 'dbconnect.php';
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve user input
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    if (empty($email)) {
-      $errors[] = 'Email is required.';
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $errors[] = 'Invalid email format.';
-  }
-
-  if (empty($password)) {
-      $errors[] = 'Password is required.';
-  }
-
-    $sql = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($sql);
-
-
-
-    if ($result->num_rows == 1) {
-      // output data of each row. fetch_assoc() fetches a result row as an associative array
-      while ($row = $result->fetch_assoc()) {
-          $hash = $row["password"];
-          if (password_verify($password, $hash)) {
-              session_start();
-              $_SESSION["id"] = $row["id"];
-              $_SESSION["email"] = $row["email"];
-              $_SESSION["role"] = $row["role"];
-              $_SESSION["loggedin"] = true;
-              unset($_POST);
-
-              if($_SESSION["role"] == "company"){
-                header("Location: dashboard/company-dashboard.php");
-              }
-              if($_SESSION["role"] == "employee"){
-                header("Location: dashboard/employee-dashboard.php");
-              }
-
-
-              
-              exit();
-          }
-          else{
-            $errors[] = "Invalid email or password";
-          }
-      }
-  }  
-}
-?>
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -151,56 +95,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- HOME -->
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('   images/hero_1.jpg');" id="home-section">
-      <div class="container">
-        
-      </div>
-    </section>
 
-    <section class="signupLoginMargin site-section">
-      <div class="container">
-        <div class="row">
-          
-         
-          <div class="col-lg-6">
-            <h2 class="mb-4">Log In To JobBoard</h2>
+    <div class="container">
+  <div class="text-center mt-5">
+  <img src="images/job_logo_3.jpg" alt="Company Logo" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover;">
 
-            <?php if (!empty($errors)) : ?>
-                     <ul style="color: red;">
-                        <?php foreach ($errors as $error) : ?>
-                        <li><?php echo $error; ?></li>
-                        <?php  endforeach;  ?>
-                     </ul>
-                     <?php endif;  ?>
+    <h2 style="color: white;" class="mt-3">Your Company Name</h2>
+    <p style="color: white;">Address</p>
 
-            <form action="login.php" method="post" class="p-4 border rounded">
+    <table style="color: white;" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Type: Your Company Type</th>
+      <th scope="col">Email: Your Phone Number</th>
+      <th scope="col">Website:  atikapps.com</th>
+      <th scope="col">Established in: Year</th>
+    </tr>
+  </thead></table>
 
-              <div class="row form-group">
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Email</label>
-                  <input type="text" id="fname" class="form-control" placeholder="Email address" name='email'>
-                </div>
-              </div>
-              <div class="row form-group mb-4">
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Password</label>
-                  <input type="password" id="fname" class="form-control" placeholder="Password" name='password'>
-                </div>
-              </div>
+   
 
-              <div class="row form-group">
-                <div class="col-md-12">
+  </div>
+
+  <div style="color: white;" class="mt-5">
+    <h3 style="color: white;">Company Background</h3>
+    <p>Your company background goes here.</p>
+  </div>
+
+  <div style="color: white;" class="mt-5">
+    <h3 style="color: white;">Services</h3>
+    <p>Describe your services here.</p>
+  </div>
+
+  <div style="color: white;" class="mt-5">
+    <h3 style="color: white;">Expertise</h3>
+    <p>List your expertise or specialties here.</p>
+  </div>
+</div>
+
+<br>
+<br>
       
-                  <input type="submit" value="Log In" class="btn px-4 btn-primary text-white">
-                </div>
-              </div>
-
-            </form>
-          </div>
-
-        </div>
-      </div>
     </section>
+
     
+
+
+    
+    
+
+
+
+
+
+
+
+
     <footer class="site-footer">
 
       <a href="#top" class="smoothscroll scroll-top">

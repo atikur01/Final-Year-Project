@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -24,6 +30,41 @@
       <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
       <!-- summernote -->
       <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+
+       
+      <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+
+
+  <style>
+        /* Common styles for both PC and mobile */
+        #viewjobpostingtable {
+            margin-top: 2%;
+        }
+
+        /* PC styles - larger than 768px */
+        @media (min-width: 769px) {
+            #viewjobpostingtable {
+                padding-left: 17%;
+                padding-right: 2%;
+            }
+        }
+
+        /* Mobile styles - up to 768px */
+        @media (max-width: 768px) {
+            #viewjobpostingtable {
+                padding-left: 0%;
+                padding-right: 2%;
+            }
+        }
+    </style>
+
+
+
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="wrapper">
@@ -39,14 +80,14 @@
                   <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                </li>
                <li class="nav-item d-none d-sm-inline-block">
-                  <a href="/dashboard/company-dashboard.php" class="nav-link">Home</a>
+                  <a href="/" class="nav-link">Home</a>
                </li>
                <li class="nav-item d-none d-sm-inline-block">
                   <a href="#" class="nav-link">Contact</a>
                </li>
-               <li class="nav-item d-none d-sm-inline-block">
-                  <a href="../logout.php" class="nav-link">Logout</a>
-               </li>
+
+               
+               
             </ul>
             <!-- Right navbar links -->
          </nav>
@@ -75,7 +116,7 @@
       <li class="nav-item">
          <a href="../company-profile.php?company_id=<?php echo $_SESSION["id"] ?>" class="nav-link"  target="_blank">
             <i class="nav-icon fas  fa-solid fa-arrow-right"></i>            
-            <p style="color: white;">Visit Company Profile</p>
+            <p style="color: white;">View Company Profile</p>
          </a>
       </li>
 
@@ -84,6 +125,13 @@
          <a href="/dashboard/post-job.php" class="nav-link">
             <i class="nav-icon fas fa-plus"></i>            
             <p style="color: white;">Post a Job</p>
+         </a>
+      </li>
+
+      <li class="nav-item">
+         <a href="/dashboard/viewjobpostings.php" class="nav-link">
+            <i class="nav-icon fas fa-solid fa-list"></i>            
+            <p style="color: white;">View Job Postings</p>
          </a>
       </li>
 

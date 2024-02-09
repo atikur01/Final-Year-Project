@@ -88,12 +88,9 @@ if(isset($_GET['company_id'])) {
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
               <li><a href="index.html" class="nav-link">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li class="has-children">
-                <a href="job-listings.html">Job Listings</a>
-                <ul class="dropdown">
-                  <li><a href="job-single.html">Job Single</a></li>
-                  <li><a href="post-job.html">Post a Job</a></li>
-                </ul>
+              <li>
+                <a href="job-listings.php">Job Listings</a>
+                
               </li>
               <li class="has-children">
                 <a href="services.html">Pages</a>
@@ -145,7 +142,7 @@ if(isset($_GET['company_id'])) {
       <th scope="col">Type: <?php echo $row['company_type']; ?></th>
       <th scope="col">Email: <?php echo $row['email']; ?></th>
       <th scope="col">Phone: <?php echo $row['phone_no']; ?></th>
-      <th scope="col"> <a href=<?php echo $row['website']; ?>>Visit Company Website!</a>  </th>
+      <th scope="col"> <a href=   <?php echo "http://" . $row['website']; ?>  target="_blank" >Visit Company Website! </a>  </th>
       
     </tr>
   </thead></table>

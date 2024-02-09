@@ -1,3 +1,41 @@
+<?php
+require 'dbconnect.php';
+
+session_start();
+$jobPostId = isset($_GET['job_post_id']) ? $_GET['job_post_id'] : null;
+
+$sql = "SELECT *
+        FROM job_postings 
+        INNER JOIN company_details ON job_postings.companyid = company_details.company_id
+        WHERE job_post_id = $jobPostId";
+
+
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+function replaceDotWithTag($inputString) {
+  // Split the input string into sentences
+  $sentences = explode('.', $inputString);
+
+  // Remove any empty sentences
+  $sentences = array_filter($sentences, 'strlen');
+
+  // Wrap each sentence in <li> tags
+  $outputString = '';
+  foreach ($sentences as $sentence) {
+    $outputString .= '<li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>' . trim($sentence) . '</span></li>';
+  }
+
+
+  return $outputString;
+}
+
+
+
+?>
+
+
+
 
 <!doctype html>
 <html lang="en">
@@ -14,8 +52,6 @@
     <link rel="stylesheet" href="fonts/line-icons/style.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/quill.snow.css">
-    
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/style.css">    
@@ -50,11 +86,14 @@
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="index.html" class="nav-link ">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li>
-                <a href="job-listings.php">Job Listings</a>
-                
+              <li class="has-children">
+                <a href="job-listings.php" class="active">Job Listings</a>
+                <ul class="dropdown">
+                  <li><a href="job-single.html" class="active">Job Single</a></li>
+                  <li><a href="post-job.html">Post a Job</a></li>
+                </ul>
               </li>
               <li class="has-children">
                 <a href="services.html">Pages</a>
@@ -69,8 +108,9 @@
                   <li><a href="gallery.html">Gallery</a></li>
                 </ul>
               </li>
-              <li><a href="blog.html" class="active">Blog</a></li>
+              
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="redirectdashboard.php">Dashboard</a></li>
               <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
               <li class="d-lg-none"><a href="login.html">Log In</a></li>
             </ul>
@@ -90,71 +130,110 @@
 
     <!-- HOME -->
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7">
-            <h1 class="text-white font-weight-bold">Our Blog</h1>
-            <div class="custom-breadcrumbs">
-              <a href="#">Home</a> <span class="mx-2 slash">/</span>
-              <span class="text-white"><strong>About Us</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
+    
     </section>
 
+    
     <section class="site-section">
       <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-6 col-lg-4 mb-5">
-            <a href="blog-single.html"><img src="images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
-            <h3><a href="blog-single.html" class="text-black">7 Factors for Choosing Between Two Jobs</a></h3>
-            <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5">
-            <a href="blog-single.html"><img src="images/sq_img_2.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
-            <h3><a href="blog-single.html" class="text-black">How to Write a Creative Cover Letter</a></h3>
-            <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5">
-            <a href="blog-single.html"><img src="images/sq_img_4.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
-            <h3><a href="blog-single.html" class="text-black">The Right Way to Quit a Job You Started</a></h3>
-            <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5">
-            <a href="blog-single.html"><img src="images/sq_img_7.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
-            <h3><a href="blog-single.html" class="text-black">7 Factors for Choosing Between Two Jobs</a></h3>
-            <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5">
-            <a href="blog-single.html"><img src="images/sq_img_5.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
-            <h3><a href="blog-single.html" class="text-black">How to Write a Creative Cover Letter</a></h3>
-            <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5">
-            <a href="blog-single.html"><img src="images/sq_img_6.jpg" alt="Image" class="img-fluid rounded mb-4"></a>
-            <h3><a href="blog-single.html" class="text-black">The Right Way to Quit a Job You Started</a></h3>
-            <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-          </div>
-        </div>
-        <div class="row pagination-wrap mt-5">
-          
-          <div class="col-md-12 text-center ">
-            <div class="custom-pagination ml-auto">
-              <a href="#" class="prev">Prev</a>
-              <div class="d-inline-block">
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-8 mb-4 mb-lg-0">
+            <div class="d-flex align-items-center">
+              <div class="border p-2 d-inline-block mr-3 rounded">
+              <img id="myImage" src="<?php  echo "dashboard/". $row["img_logo_path"]; ?>"
+               onerror="loadBackupImage()" alt="Set Your logo" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover;">
               </div>
-              <a href="#" class="next">Next</a>
+              <div>
+                <h2><?php echo $row["jobTitle"]; ?></h2>
+                <div>
+                  <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span><a href="company-profile.php?company_id=<?php echo $_SESSION["id"] ?>" target="_blank"><?php echo $row["company_name"]; ?></a>  </span>
+                  <span class="m-2"><span class="icon-room mr-2"></span><?php echo $row["location"]; ?></span>
+                  <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary"><?php echo $row["jobType"]; ?></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-6">
+                
+              </div>
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
+              </div>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="mb-5">
+              
+              <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Job Description</h3>
+              <p><?php echo $row["jobDescription"]; ?></p>
+      
+            </div>
+            <div class="mb-5">
+              <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Responsibilities</h3>
+              <ul class="list-unstyled m-0 p-0">
 
+              <?php echo  replaceDotWithTag($row["responsibilities"])   ; ?>
+        
+                
+              </ul>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-book mr-3"></span>Education + Experience</h3>
+              <ul class="list-unstyled m-0 p-0">
+              <p> <?php echo  replaceDotWithTag($row["eduExperience"])   ; ?>   <p>
+              </ul>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-turned_in mr-3"></span>Other Benifits</h3>
+              <ul class="list-unstyled m-0 p-0">
+               <?php echo  replaceDotWithTag($row["otherBenefits"])   ; ?>
+                
+              </ul>
+            </div>
+
+            <br>
+            <br>
+            <div class="row mb-5">
+              
+              <div class="col-6">
+                
+              </div>
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-4">
+            <div class="bg-light p-3 border rounded mb-4">
+              <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
+              <ul class="list-unstyled pl-3 mb-0">
+                <li class="mb-2"><strong class="text-black">Published on:</strong> <?php echo $row["publishedOn"]; ?></li>
+                <li class="mb-2"><strong class="text-black">Vacancy:</strong> <?php echo $row["vacancy"]; ?> </li>
+                <li class="mb-2"><strong class="text-black">Employment Status : </strong><?php echo $row["jobType"]; ?></li>
+                <li class="mb-2"><strong class="text-black">Required Experience year:</strong> <?php echo $row["experience"]; ?></li>
+                <li class="mb-2"><strong class="text-black">Job Location:</strong> <?php echo $row["location"]; ?> </li>
+                <li class="mb-2"><strong class="text-black">Salary:</strong> <?php echo $row["jobSalary"]; ?> </li>
+                <li class="mb-2"><strong class="text-black">Gender:</strong> <?php echo $row["gender"]; ?> </li>
+                <li class="mb-2"><strong class="text-black">Application Deadline:</strong> <?php echo $row["deadline"]; ?> </li>
+              </ul>
+            </div>
+
+            
+
+          </div>
+        </div>
       </div>
     </section>
+
+    
+
     
     <footer class="site-footer">
 
@@ -227,14 +306,11 @@
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <script src="js/quill.min.js"></script>
-    
     
     <script src="js/bootstrap-select.min.js"></script>
     
     <script src="js/custom.js"></script>
-   
-   
+
      
   </body>
 </html>

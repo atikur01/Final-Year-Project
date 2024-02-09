@@ -112,7 +112,7 @@
                         <li><a href="index.html" class="nav-link">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li class="has-children">
-                           <a href="job-listings.html">Job Listings</a>
+                           <a href="job-listings.php">Job Listings</a>
                            <ul class="dropdown">
                               <li><a href="job-single.html">Job Single</a></li>
                               <li><a href="post-job.html">Post a Job</a></li>
@@ -131,8 +131,9 @@
                               <li><a href="gallery.html">Gallery</a></li>
                            </ul>
                         </li>
-                        <li><a href="blog.html">Blog</a></li>
+                        
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="redirectdashboard.php">Dashboard</a></li>
                         <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
                         <li class="d-lg-none"><a href="#" onclick="window.location.href='login.php'; return false;">Log In</a></li>
                         <li class="d-lg-none"><a href="#" onclick="window.location.href='signup.php'; return false;">Sign Up</a></li>

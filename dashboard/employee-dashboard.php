@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if($_SESSION["loggedin"] != true ){
+if($_SESSION["loggedin"] != true && $_SESSION["role"]=="employee" ){
   header("Location: ../login.php");
   exit();
 }

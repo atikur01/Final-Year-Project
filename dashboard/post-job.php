@@ -10,8 +10,13 @@ if($_SESSION["loggedin"] != true ){
 include('header.php');
 ?>
 
-  <h1 style="padding-left:40%"> this is demo dashboard</h1>
+<?php
+include('post-job-form.php');
+?>
+  
 
+  
+<br>
 <?php
 include('footer.php');
 ?>

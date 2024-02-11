@@ -137,15 +137,19 @@ if(isset($_GET['company_id'])) {
     <p style="color: white;"><?php echo $row['address']; ?></p>
 
     <table style="color: white;" class="table">
-  <thead>
-    <tr>
-      <th scope="col">Type: <?php echo $row['company_type']; ?></th>
-      <th scope="col">Email: <?php echo $row['email']; ?></th>
-      <th scope="col">Phone: <?php echo $row['phone_no']; ?></th>
-    <!--  <th scope="col"> <a href=   <?php echo "http://" . $row['website']; ?>  target="_blank" >Visit Company Website! </a>  </th> -->
-      
-    </tr>
-  </thead></table>
+    <thead style="display: block;">
+
+<tr style="display: flex; flex-wrap: wrap;">
+  <th style="flex: 1; padding: 10px;">Type: <?php echo $row['company_type']; ?></th>
+  <th style="flex: 1; padding: 10px;">Email: <?php echo $row['email']; ?></th>
+  <th style="flex: 1; padding: 10px;">Phone: <?php echo $row['phone_no']; ?></th>
+  <th style="flex: 1; padding: 10px;"> <a href="<?php echo "http://" . $row['website']; ?>" target="_blank">Visit Company Website! </a> </th>
+</tr>
+
+</thead>
+
+
+</table>
 
    
 

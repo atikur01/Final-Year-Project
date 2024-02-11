@@ -1,6 +1,8 @@
 <?php
 require 'dbconnect.php';
 
+error_reporting(0);
+
 session_start();
 $jobPostId = isset($_GET['job_post_id']) ? $_GET['job_post_id'] : null;
 

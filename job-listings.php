@@ -1,5 +1,6 @@
 <?php
    require "dbconnect.php";
+   error_reporting(0);
    
    // Fetch data from the database
    $getallcount = "SELECT COUNT(*) as count FROM job_postings";

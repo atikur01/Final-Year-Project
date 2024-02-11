@@ -142,7 +142,7 @@ if(isset($_GET['company_id'])) {
       <th scope="col">Type: <?php echo $row['company_type']; ?></th>
       <th scope="col">Email: <?php echo $row['email']; ?></th>
       <th scope="col">Phone: <?php echo $row['phone_no']; ?></th>
-      <th scope="col"> <a href=   <?php echo "http://" . $row['website']; ?>  target="_blank" >Visit Company Website! </a>  </th>
+    <!--  <th scope="col"> <a href=   <?php echo "http://" . $row['website']; ?>  target="_blank" >Visit Company Website! </a>  </th> -->
       
     </tr>
   </thead></table>

@@ -7,13 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $otp = $_POST['otp'];
     $user_id = $_POST['user_id'];
 
-    // Define the time window for OTP validation (e.g., 15 minutes)
-    $validTimestamp = date('Y-m-d H:i:s', strtotime('-1 minutes'));
-
     // Check if the OTP matches the one stored in the database and is within the time window
-    $sql = "SELECT * FROM forgot_password WHERE user_id = ? AND otp = ? AND timestamp >= ?";
+    $sql = "SELECT * FROM forgot_password WHERE user_id = ? AND otp = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $user_id, $otp, $validTimestamp);
+    $stmt->bind_param("ss", $user_id, $otp);
     $stmt->execute();
     $result = $stmt->get_result();
 

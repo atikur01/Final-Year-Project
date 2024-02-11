@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2024 at 03:45 PM
+-- Generation Time: Feb 11, 2024 at 05:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,21 +53,49 @@ INSERT INTO `company_details` (`company_id`, `company_name`, `address`, `company
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `employee_id` int(11) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `job_title` varchar(255) DEFAULT NULL,
+  `age` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `forgot_password`
 --
 
 CREATE TABLE `forgot_password` (
   `user_id` int(11) DEFAULT NULL,
-  `otp` varchar(255) DEFAULT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `otp` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `forgot_password`
 --
 
-INSERT INTO `forgot_password` (`user_id`, `otp`, `timestamp`) VALUES
-(10, '211252', '2024-02-11 13:42:49');
+INSERT INTO `forgot_password` (`user_id`, `otp`) VALUES
+(10, '722941');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_applications`
+--
+
+CREATE TABLE `job_applications` (
+  `application_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `resume_path` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -108,7 +136,7 @@ INSERT INTO `job_postings` (`job_post_id`, `companyid`, `jobTitle`, `location`, 
 (19, 10, 'Sales Representative', 'Seattle', 'Full-Time', '\r\nAs a Customer Experience Specialist, you will play a crucial role in ensuring our customers have a seamless and delightful experience with our products/services. You will be the frontline representative, handling inquiries, resolving issues, and providing top-notch assistance to our valued customers.\r\n', '\r\n\r\nGuide new clients through the onboarding process, ensuring a seamless integration of our products into their operations.\r\nCollaborate with the implementation team to customize solutions based on client requirements and objectives.\r\nServe as the primary point of contact for assigned accounts, building strong relationships with key stakeholders.\r\nConduct regular check-ins to assess client satisfaction, address concerns, and identify opportunities for upselling or cross-selling.\r\nIdentify and nurture customer advocates by understanding their success stories and positive experiences.\r\nEncourage satisfied clients to participate in case studies, testimonials, and other marketing initiatives\r\n\r\n', '\r\nBachelor\'s degree in Marketing, Business Administration, or a related field.\r\nRelevant certifications in Digital Marketing or Content Marketing are a plus.\r\nManaged and executed successful digital marketing campaigns, resulting in a 20% increase in online engagement.\r\nProficient in utilizing SEO strategies to enhance website visibility and drive organic traffic.\r\nExecuted social media campaigns across multiple platforms, increasing brand followers by 30%.', 'Competitive salary.\r\nHealth and dental insurance.\r\n401(k) retirement plan.\r\nProfessional development opportunities.\r\nCollaborative and innovative work environment', '2024-02-15', 3, 2, 'Any', '$60,000 - $80,000', '2024-03-15', 'publish'),
 (20, 10, 'Network Engineer', 'Dallas', 'Full-Time', '\r\nAs a Customer Experience Specialist, you will play a crucial role in ensuring our customers have a seamless and delightful experience with our products/services. You will be the frontline representative, handling inquiries, resolving issues, and providing top-notch assistance to our valued customers.\r\n', '\r\n\r\nGuide new clients through the onboarding process, ensuring a seamless integration of our products into their operations.\r\nCollaborate with the implementation team to customize solutions based on client requirements and objectives.\r\nServe as the primary point of contact for assigned accounts, building strong relationships with key stakeholders.\r\nConduct regular check-ins to assess client satisfaction, address concerns, and identify opportunities for upselling or cross-selling.\r\nIdentify and nurture customer advocates by understanding their success stories and positive experiences.\r\nEncourage satisfied clients to participate in case studies, testimonials, and other marketing initiatives\r\n\r\n', '\r\nBachelor\'s degree in Marketing, Business Administration, or a related field.\r\nRelevant certifications in Digital Marketing or Content Marketing are a plus.\r\nManaged and executed successful digital marketing campaigns, resulting in a 20% increase in online engagement.\r\nProficient in utilizing SEO strategies to enhance website visibility and drive organic traffic.\r\nExecuted social media campaigns across multiple platforms, increasing brand followers by 30%.', 'Competitive salary.\r\nHealth and dental insurance.\r\n401(k) retirement plan.\r\nProfessional development opportunities.\r\nCollaborative and innovative work environment', '2024-02-16', 2, 3, 'Any', '$75,000 - $90,000', '2024-03-30', 'publish'),
 (21, 10, 'Administrative Assistant', 'Miami', 'Part-Time', '\r\nAs a Customer Experience Specialist, you will play a crucial role in ensuring our customers have a seamless and delightful experience with our products/services. You will be the frontline representative, handling inquiries, resolving issues, and providing top-notch assistance to our valued customers.\r\n', '\r\n\r\nGuide new clients through the onboarding process, ensuring a seamless integration of our products into their operations.\r\nCollaborate with the implementation team to customize solutions based on client requirements and objectives.\r\nServe as the primary point of contact for assigned accounts, building strong relationships with key stakeholders.\r\nConduct regular check-ins to assess client satisfaction, address concerns, and identify opportunities for upselling or cross-selling.\r\nIdentify and nurture customer advocates by understanding their success stories and positive experiences.\r\nEncourage satisfied clients to participate in case studies, testimonials, and other marketing initiatives\r\n\r\n', '\r\nBachelor\'s degree in Marketing, Business Administration, or a related field.\r\nRelevant certifications in Digital Marketing or Content Marketing are a plus.\r\nManaged and executed successful digital marketing campaigns, resulting in a 20% increase in online engagement.\r\nProficient in utilizing SEO strategies to enhance website visibility and drive organic traffic.\r\nExecuted social media campaigns across multiple platforms, increasing brand followers by 30%.', 'Competitive salary.\r\nHealth and dental insurance.\r\n401(k) retirement plan.\r\nProfessional development opportunities.\r\nCollaborative and innovative work environment', '2024-02-17', 2, 1, 'Any', '$35,000 - $40,000', '2024-03-10', 'publish'),
-(22, 10, 'Quality Assurance Analyst', 'Houston', 'Contract', 'As a Customer Experience Specialist, you will play a crucial role in ensuring our customers have a seamless and delightful experience with our products/services. You will be the frontline representative, handling inquiries, resolving issues, and providing top-notch assistance to our valued customers.\r\n', '\r\nGuide new clients through the onboarding process, ensuring a seamless integration of our products into their operations.\r\nCollaborate with the implementation team to customize solutions based on client requirements and objectives.\r\nServe as the primary point of contact for assigned accounts, building strong relationships with key stakeholders.\r\nConduct regular check-ins to assess client satisfaction, address concerns, and identify opportunities for upselling or cross-selling.\r\nIdentify and nurture customer advocates by understanding their success stories and positive experiences.\r\nEncourage satisfied clients to participate in case studies, testimonials, and other marketing initiatives\r\n\r\n', 'Bachelor\'s degree in Marketing, Business Administration, or a related field.\r\nRelevant certifications in Digital Marketing or Content Marketing are a plus.\r\nManaged and executed successful digital marketing campaigns, resulting in a 20% increase in online engagement.\r\nProficient in utilizing SEO strategies to enhance website visibility and drive organic traffic.\r\nExecuted social media campaigns across multiple platforms, increasing brand followers by 30%.', 'Competitive salary.\r\nHealth and dental insurance.\r\n401(k) retirement plan.\r\nProfessional development opportunities.\r\nCollaborative and innovative work environment', '2024-02-18', 1, 2, 'male', '$70,000 - $85,000', '2024-03-20', 'unpublish'),
+(22, 10, 'Quality Assurance Analyst', 'Houston', 'Contract', 'As a Customer Experience Specialist, you will play a crucial role in ensuring our customers have a seamless and delightful experience with our products/services. You will be the frontline representative, handling inquiries, resolving issues, and providing top-notch assistance to our valued customers.\r\n', 'Guide new clients through the onboarding process, ensuring a seamless integration of our products into their operations.\r\nCollaborate with the implementation team to customize solutions based on client requirements and objectives.\r\nServe as the primary point of contact for assigned accounts, building strong relationships with key stakeholders.\r\nConduct regular check-ins to assess client satisfaction, address concerns, and identify opportunities for upselling or cross-selling.\r\nIdentify and nurture customer advocates by understanding their success stories and positive experiences.\r\nEncourage satisfied clients to participate in case studies, testimonials, and other marketing initiatives\r\n\r\n', 'Bachelor\'s degree in Marketing, Business Administration, or a related field.\r\nRelevant certifications in Digital Marketing or Content Marketing are a plus.\r\nManaged and executed successful digital marketing campaigns, resulting in a 20% increase in online engagement.\r\nProficient in utilizing SEO strategies to enhance website visibility and drive organic traffic.\r\nExecuted social media campaigns across multiple platforms, increasing brand followers by 30%.', 'Competitive salary.\r\nHealth and dental insurance.\r\n401(k) retirement plan.\r\nProfessional development opportunities.\r\nCollaborative and innovative work environment', '2024-02-18', 1, 2, 'male', '$70,000 - $85,000', '2024-03-20', 'publish'),
 (39, 10, 'test', 'test', 'Full Time', 'test', 'test', 'test', 'test', '2024-02-11', 1, 1, 'female', '1', '2024-02-22', 'unpublish');
 
 -- --------------------------------------------------------
@@ -138,7 +166,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `role`) VALUES
 (7, 'atik1@gmail.com', '$2y$10$4MVpooOudtrFvrMQYjZY8uWSMBC0PrasLry99olcy8gsX4JJ6trBG', 'employee'),
 (8, '7772anstice@mitico.org', '$2y$10$a5hZrEsMjEAv/e7Db.p6iO85dLaJb5bmcljP7d/i2zde0xbYer56.', 'company'),
 (9, 'bluepearle@mitico.org', '$2y$10$dtEy/VMgVytkfzO/.dsNQOpqO2.H5thl4vFmIpSZKLCju9GYvx9FS', 'company'),
-(10, 'atikvucse@gmail.com', '$2y$10$gwN4qqoLCJ74q7iL.m60/u9tUTQ3YHNA6llfbAsCfXQqara9nwac6', 'company');
+(10, 'atikvucse@gmail.com', '$2y$10$sH9.gYphGRrutvxYfBwY/uclrcqjKFZAxPNLyCgaMa3Wd4s7OZUC6', 'company');
 
 --
 -- Indexes for dumped tables
@@ -151,10 +179,23 @@ ALTER TABLE `company_details`
   ADD PRIMARY KEY (`company_id`);
 
 --
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD KEY `employee_id` (`employee_id`);
+
+--
 -- Indexes for table `forgot_password`
 --
 ALTER TABLE `forgot_password`
   ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  ADD PRIMARY KEY (`application_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `job_postings`
@@ -172,6 +213,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `job_postings`
@@ -196,10 +243,22 @@ ALTER TABLE `company_details`
   ADD CONSTRAINT `company_details_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `users` (`id`);
 
 --
+-- Constraints for table `employees`
+--
+ALTER TABLE `employees`
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `users` (`id`);
+
+--
 -- Constraints for table `forgot_password`
 --
 ALTER TABLE `forgot_password`
   ADD CONSTRAINT `forgot_password_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `job_applications`
+--
+ALTER TABLE `job_applications`
+  ADD CONSTRAINT `job_applications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `job_postings`

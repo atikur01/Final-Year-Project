@@ -13,6 +13,10 @@ $sql = "SELECT *
 
 
 $result = $conn->query($sql);
+if($result->num_rows==0 ){
+  header("Location: JobNotFound.php");
+}
+
 $row = $result->fetch_assoc();
 
 function replaceDotWithTag($inputString) {

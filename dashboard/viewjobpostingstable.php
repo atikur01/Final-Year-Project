@@ -19,13 +19,13 @@
                <!-- /.card-header -->
                <div class="card-body">
                   <div class="table-responsive">
-                  <h2>Published Jobs</h2>
+                  <h2>All Jobs</h2>
                      <table id="example1" class="table table-bordered table-striped">
                         <thead>
                            <tr style="text-align: center;">
                               <th>Job Post ID</th>
                               <th>Job Title</th>
-                              <th>Vacancy</th>
+                              <th>Status</th>
                               <th>Deadline</th>
                               <th>Actions</th>
                            </tr>
@@ -37,7 +37,7 @@
                                   echo "<tr>";
                                   echo "<td>" . $row["job_post_id"] . "</td>";
                                   echo "<td>" . $row["jobTitle"] . "</td>";
-                                  echo "<td>" . $row["vacancy"] . "</td>";
+                                  echo "<td>" . $row["job_post_status"] . "ed" . "</td>";
                                   echo "<td>" . $row["deadline"] . "</td>";
                                   echo "<td>";
                               
@@ -46,10 +46,11 @@
 
                               
                                   // Edit Button
-                                  echo '<button  type="button" class="btn btn-warning" style="margin-left:1%;">Edit</button>';
+                                  echo '<a href="edit-job-post.php?job_post_id=' . $row["job_post_id"] . '" class="btn btn-warning" style="margin-left:1%;  target="_blank"">Edit</a>';
                               
                                   // Delete Button
-                                  echo '<button type="button" class="btn btn-danger" style="margin-left:1%;" >Delete</button>';
+
+                                  echo '<a href="delete-job.php?job_post_id=' . $row["job_post_id"] . '" class="btn btn-danger" style="margin-left:1%;  target="_blank"">Delete</a>';
                               
                                   echo "</td>"; // Close the table data cell
                                   echo "</tr>";

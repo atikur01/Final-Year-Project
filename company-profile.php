@@ -22,7 +22,7 @@ if(isset($_GET['company_id'])) {
         // Close the database connection
         $conn->close();
 
-        // Use $row data as needed
+       
     } else {
         echo "No records found for company ID: $company_id";
     }

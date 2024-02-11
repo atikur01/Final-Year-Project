@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $uploadOk = 0;
         }
 
-        // Check file size
+        // Check file size in bytes
         if ($_FILES["photo"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //$sql = "INSERT INTO photos (image_path) VALUES ('$image_path')";
 
                 $logo = $target_file;
-                echo $logo;
+               // echo $logo;
             }
         }
         foreach ($_FILES as $key => $value) {
@@ -92,8 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $logo = $_SESSION["img_logo_path"];
     }
 
-    //$logo = mysqli_real_escape_string($conn, $_POST['logo']); // Assuming 'logo' is the file name
-    //$logo = "/tedt/img";
+
 
     // Insert data into the database
     $sql = "INSERT INTO company_details (company_id, company_name, address, company_type, email, phone_no, website, company_background, services, expertise, img_logo_path)

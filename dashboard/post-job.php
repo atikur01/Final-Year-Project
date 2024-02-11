@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $gender = $_POST['gender'];
   $jobSalary = $_POST['jobSalary'];
   $deadline = $_POST['deadline'];
+  $job_post_status = $_POST['job_post_status'];
   
 
   // SQL query
@@ -49,7 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       experience,
       gender,
       jobSalary,
-      deadline
+      deadline,
+      job_post_status
   ) VALUES (
       $company_id,
       '$jobTitle',
@@ -64,7 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $experience,
       '$gender',
       '$jobSalary',
-      '$deadline'
+      '$deadline',
+      '$job_post_status'
   )";
 
   // Execute the query

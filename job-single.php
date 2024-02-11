@@ -88,12 +88,9 @@ function replaceDotWithTag($inputString) {
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
               <li><a href="index.html" class="nav-link ">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li class="has-children">
+              <li >
                 <a href="job-listings.php" class="active">Job Listings</a>
-                <ul class="dropdown">
-                  <li><a href="job-single.html" class="active">Job Single</a></li>
-                  <li><a href="post-job.html">Post a Job</a></li>
-                </ul>
+                
               </li>
               <li class="has-children">
                 <a href="services.html">Pages</a>

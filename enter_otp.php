@@ -1,56 +1,41 @@
 <?php
+
 require 'dbconnect.php';
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Retrieve user input
-  $email = $_POST["email"];
-  $password = $_POST["password"];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get user input
+    $otp = $_POST['otp'];
+    $user_id = $_POST['user_id'];
 
-  if (empty($email)) {
-    $errors[] = 'Email is required.';
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = 'Invalid email format.';
-  }
+    // Define the time window for OTP validation (e.g., 15 minutes)
+    $validTimestamp = date('Y-m-d H:i:s', strtotime('-1 minutes'));
 
-  if (empty($password)) {
-    $errors[] = 'Password is required.';
-  }
+    // Check if the OTP matches the one stored in the database and is within the time window
+    $sql = "SELECT * FROM forgot_password WHERE user_id = ? AND otp = ? AND timestamp >= ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $user_id, $otp, $validTimestamp);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-  $sql = "SELECT * FROM users WHERE email='$email'";
-  $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // OTP is valid, allow the user to reset the password
 
-
-
-  if ($result->num_rows == 1) {
-    // output data of each row. fetch_assoc() fetches a result row as an associative array
-    while ($row = $result->fetch_assoc()) {
-      $hash = $row["password"];
-      if (password_verify($password, $hash)) {
         session_start();
-        $_SESSION["id"] = $row["id"];
-        $_SESSION["email"] = $row["email"];
-        $_SESSION["role"] = $row["role"];
-        $_SESSION["loggedin"] = true;
-        unset($_POST);
+        $_SESSION['otp-validation'] = true;
 
-        if ($_SESSION["role"] == "company") {
-          header("Location: dashboard/company-dashboard.php");
-        }
-        if ($_SESSION["role"] == "employee") {
-          header("Location: dashboard/employee-dashboard.php");
-        }
-
-
-
+        header("Location: reset_password_form.php?user_id=$user_id");
         exit();
-      } else {
-        $errors[] = "Invalid email or password";
-      }
+    } else {
+        $errors[] = "Invalid OTP or expired. Please try again.";
     }
-  }
+
+    // Close database connection
+    $stmt->close();
+    $conn->close();
 }
 ?>
+
+
 
 
 <!doctype html>
@@ -167,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
           <div class="col-lg-6">
-            <h2 class="mb-4">Log In To JobBoard</h2>
+            <h2 class="mb-4">Enter OTP</h2>
 
             <?php if (!empty($errors)): ?>
               <ul style="color: red;">
@@ -182,35 +167,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-            <form action="login.php" method="post" class="p-4 border rounded">
+            <form action="enter_otp.php" method="post" class="p-4 border rounded">
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Email</label>
-                  <input type="text" id="fname" class="form-control" placeholder="Email address" name='email'>
+                  <label class="text-black" for="otp">Check Your Email and enter the OTP</label>
+                  <input type="text" id="otp" class="form-control" placeholder="" name='otp'>
                 </div>
               </div>
 
-              <div class="row form-group mb-4">
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Password</label>
-                  <input type="password" id="fname" class="form-control" placeholder="Password" name='password'>
-                </div>
-              </div>
+              <input type="hidden" name="user_id" value="<?php  if(isset( $_GET['user_id'])) {echo $_GET['user_id']; }?>">
+
+              
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Log In" class="btn px-4 btn-primary text-white">
+                  <input type="submit" value="Continue" class="btn px-4 btn-primary text-white">
                 </div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <p >
-                    <a href="forgot_password.php"  style="text-decoration: none;">Forgot Password?</a>
-                  </p>
-                </div>
-              </div>
+             
 
             </form>
 

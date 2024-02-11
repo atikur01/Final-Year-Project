@@ -91,6 +91,17 @@
         <input type="date" class="form-control" id="deadline" name="deadline" required>
     </div>
 
+    <!-- Status -->
+    <div class="form-group">
+    <label for="status">Status:</label>
+    <select class="form-control" id="job_post_status" name="job_post_status" required>
+        <option value="publish">Publish</option>
+        <option value="unpublish">Unpublish</option>
+    </select>
+    </div>
+
+
+
     <button type="submit" class="btn btn-primary d-block mx-auto">Submit</button>
 </form>
 

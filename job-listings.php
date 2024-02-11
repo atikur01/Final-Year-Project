@@ -3,7 +3,7 @@
    error_reporting(0);
    
    // Fetch data from the database
-   $getallcount = "SELECT COUNT(*) as count FROM job_postings";
+   $getallcount = "SELECT COUNT(*) as count FROM job_postings where job_post_status = 'publish'";
 
    $countresult = $conn->query($getallcount);
 

@@ -11,7 +11,7 @@
 
    // Fetch data from the database
    $getalljob = "SELECT * FROM job_postings 
-              INNER JOIN company_details ON job_postings.companyid = company_details.company_id ";
+              INNER JOIN company_details ON job_postings.companyid = company_details.company_id  AND job_post_status = 'publish'";
 
 
    $result = $conn->query($getalljob);

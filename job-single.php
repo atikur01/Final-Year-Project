@@ -7,7 +7,7 @@ $jobPostId = isset($_GET['job_post_id']) ? $_GET['job_post_id'] : null;
 $sql = "SELECT *
         FROM job_postings 
         INNER JOIN company_details ON job_postings.companyid = company_details.company_id
-        WHERE job_post_id = $jobPostId";
+        WHERE job_post_id = $jobPostId AND job_post_status = 'publish'";
 
 
 $result = $conn->query($sql);

@@ -1,4 +1,4 @@
-//to run this file write: node send-email.js   in directory terminal
+//To run this file write: node send-email.js   in directory terminal, http://localhost:3000/send-email
 const express = require('express');
 const { EmailClient } = require("@azure/communication-email");
 

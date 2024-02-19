@@ -1,13 +1,13 @@
 <?php
 
 class MailSender {
-    private static $apiUrl ="https://v34djw7fc7hccgzoqfauzqarce0bohmt.lambda-url.ap-southeast-1.on.aws/";
+    private static $apiUrl ="http://localhost:3000/send-email";
 
     public static function sendMail($subject, $message, $to) {
         $data = [
             'subject' => $subject,
-            'message' => $message,
-            'to' => $to,
+            'plainText' => $message,
+            'toAddress' => $to,
         ];
 
         $jsonData = json_encode($data);

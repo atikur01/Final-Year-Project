@@ -1,7 +1,7 @@
 <?php
 
 class MailSender {
-    private static $apiUrl ="https://send-mail-func.azurewebsites.net/api/HttpTrigger1?code=9bcj5DwocF2UwfXB3PTORs2kie3plcfnet_ZHM22nnmBAzFuGnq8Hg==";
+    private static $apiUrl ="https://v34djw7fc7hccgzoqfauzqarce0bohmt.lambda-url.ap-southeast-1.on.aws/";
 
     public static function sendMail($subject, $message, $to) {
         $data = [

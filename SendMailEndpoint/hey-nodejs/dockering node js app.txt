@@ -22,11 +22,14 @@ docker pull coc13259/hey-nodejs:0.0.2.RELEASE
 docker pull coc13259/hey-nodejs:0.0.1.RELEASE
 
 
-docker container run -p 3000:3000 coc13259/hey-nodejs:0.0.2.RELEASE  
+docker container run -d -p 3000:3000 coc13259/hey-nodejs:0.0.2.RELEASE  
 docker container run -d -p 3000:3000 coc13259/hey-nodejs:0.0.1.RELEASE
 
 
 docker run -p 3000:3000 coc13259/hey-nodejs:0.0.1.RELEASE
+
+
+http://ec2-18-144-83-67.us-west-1.compute.amazonaws.com:3000/send-email
 
 
 

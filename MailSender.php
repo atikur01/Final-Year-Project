@@ -1,7 +1,9 @@
 <?php
 
 class MailSender {
-    private static $apiUrl ="http://localhost:3000/send-email";
+    # private static $apiUrl ="http://localhost:3000/send-email";
+
+    private static $apiUrl ="http://ec2-18-144-83-67.us-west-1.compute.amazonaws.com:3000/send-email";
 
     public static function sendMail($subject, $message, $to) {
         $data = [

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2024 at 05:59 PM
+-- Generation Time: Feb 19, 2024 at 05:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -81,7 +81,7 @@ CREATE TABLE `forgot_password` (
 --
 
 INSERT INTO `forgot_password` (`user_id`, `otp`) VALUES
-(10, '722941');
+(10, '728928');
 
 -- --------------------------------------------------------
 

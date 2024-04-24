@@ -1,25 +1,81 @@
 <?php
    require "dbconnect.php";
-   error_reporting(0);
-   
-   // Fetch data from the database
-   $getallcount = "SELECT COUNT(*) as count FROM job_postings where job_post_status = 'publish'";
+   //error_reporting(0);
 
-   $countresult = $conn->query($getallcount);
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve the search parameters from the form
+    $keyword = $_POST['keyword'];
 
-   $rowcount = $countresult->fetch_assoc();
+    //echo $_POST['keyword'];
 
+    $region = $_POST['region'];
 
-   // Fetch data from the database
+    //echo $_POST['region'];
+
+    $jobType = $_POST['jobType'];
+
+    //echo $_POST['jobType'];
+
+    // Construct the SQL query based on the search parameters
+   // $getalljob = "SELECT * FROM job_postings 
+   // INNER JOIN company_details ON job_postings.companyid = company_details.company_id  AND job_post_status = 'publish'
+   //  WHERE jobTitle LIKE '%$keyword%' AND location LIKE '%$region%' AND jobType = '$jobType'";
+
    $getalljob = "SELECT * FROM job_postings 
-              INNER JOIN company_details ON job_postings.companyid = company_details.company_id  
-              WHERE job_post_status = 'publish' 
-              ORDER BY job_postings.job_post_id DESC";
+    INNER JOIN company_details ON job_postings.companyid = company_details.company_id  
+    WHERE job_post_status = 'publish'AND jobTitle LIKE '%$keyword%' AND location LIKE '%$region%' AND jobType = '$jobType'";
 
+    $result = $conn->query($getalljob);
+
+    $resultCount1 = mysqli_num_rows($result);
+    //echo $resultCount1;
+
+    if ($resultCount1 == 0) {
+      $getalljob = "SELECT * FROM job_postings 
+      INNER JOIN company_details ON job_postings.companyid = company_details.company_id  
+      WHERE job_post_status = 'publish'AND jobTitle LIKE '%$keyword%'";
+  
+      $result = $conn->query($getalljob);
+    } 
+
+
+}
+
+   // Define variables and initialize with empty values
+$keyword = $region = $jobType = "";
+
+   // Fetch data from the database
+  // $getalljob = "SELECT * FROM job_postings 
+            //  INNER JOIN company_details ON job_postings.companyid = company_details.company_id  AND job_post_status = 'publish'";
 
 
    $result = $conn->query($getalljob);
 
+
+   
+// Function to update keyword search count
+function updateKeywordCount($keyword) {
+    global $conn;
+    $keyword = mysqli_real_escape_string($conn, $keyword);
+    $sql = "SELECT id FROM searched_keywords WHERE keyword = '$keyword'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $sql = "UPDATE searched_keywords SET search_count = search_count + 1 WHERE keyword = '$keyword'";
+        mysqli_query($conn, $sql);
+    } else {
+        $sql = "INSERT INTO searched_keywords (keyword) VALUES ('$keyword')";
+        mysqli_query($conn, $sql);
+    }
+
+}
+    // Assuming you have received a search query
+$search_keyword = $_POST['keyword'];
+
+if($search_keyword != "") {
+    // Update the keyword count 
+updateKeywordCount($search_keyword);
+}
 
 ?>
 <!doctype html>
@@ -74,9 +130,6 @@
                 <li>
                   <a href="index.php" class="nav-link">Home</a>
                 </li>
-                <li>
-    
-                </li>
 
                 <li >
                 <a href="job-listings.php">Job Listings</a>
@@ -89,28 +142,42 @@
                 
               </li>
 
+              <!-- 
+ <li class="has-children">
+                <a href="services.html">Pages</a>
+                <ul class="dropdown">
+                  <li><a href="services.html">Services</a></li>
+                  <li><a href="service-single.html">Service Single</a></li>
+                  <li><a href="blog-single.html">Blog Single</a></li>
+                  <li><a href="portfolio.html">Portfolio</a></li>
+                  <li><a href="portfolio-single.html">Portfolio Single</a></li>
+                  <li><a href="testimonials.html">Testimonials</a></li>
+                  <li><a href="faq.html">Frequently Ask Questions</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+              </li>
 
-              <li><a href="dashboard/company-dashboard.php">Dashboard</a></li>
+               <li><a href="contact.html">Contact</a></li>
+
+               -->
+
+               <li><a href="dashboard/company-dashboard.php">Dashboard</a></li>
                 
-               
                 <li class="d-lg-none">
                   <a href="dashboard/post-job.php">
                     <span class="mr-2">+</span> Post a Job </a>
                 </li>
-                <li class="d-lg-none"><a href="#" onclick="window.location.href='login.php'; return false;">Log In</a></li>
-              <li class="d-lg-none"><a href="#" onclick="window.location.href='signup.php'; return false;">Sign Up</a></li>
+                <li class="d-lg-none">
+                  <a href="login.html">Log In</a>
+                </li>
               </ul>
             </nav>
             <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
               <div class="ml-auto">
                 <a href="dashboard/post-job.php" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block">
                   <span class="mr-2 icon-add"></span>Post a Job </a>
-               
-
-                  <a href="login.php" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
-              <a href="signup.php" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="icon-user-plus"></span> Sign Up</a>
-
-                 
+                <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block">
+                  <span class="mr-2 icon-lock_outline"></span>Log In </a>
               </div>
               <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3">
                 <span class="icon-menu h3 m-0 p-0 mt-2"></span>
@@ -125,7 +192,7 @@
         <div class="container">
           <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
-              <h2 class="section-title mb-2"> <?php echo $rowcount["count"] ?> Jobs Found </h2>
+              <h2 class="section-title mb-2"> <?php echo mysqli_num_rows($result) ?> Jobs Found </h2>
             </div>
           </div>
           <ul class="job-listings mb-5">
@@ -135,14 +202,13 @@
                   <td style="display:none;">id</td>
                    <td style="display:none;">jobs</td>
                 </tr>
+                
             </thead>
 
               </tbody>
 
 
               <?php
-
-            
 
               // Check if there are results
 if ($result->num_rows > 0) {
@@ -153,7 +219,6 @@ if ($result->num_rows > 0) {
         echo '<td style="display:none;"  >';
         echo $row["job_post_id"];
         echo '</td>';
-
 
         echo '<td>';
         echo '<li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">';
@@ -319,9 +384,13 @@ if ($result->num_rows > 0) {
         new DataTable('#example', {
           searching: false,
           lengthChange: false,
-          lengthMenu: [5], 
-          order: [[0, 'desc']]
-        }); 
+          lengthMenu: [5],
+
+          order: [[0, 'desc']],
+
+          suppressWarnings: true
+
+        });
       });
     </script>
   </body>

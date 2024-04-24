@@ -77,19 +77,26 @@
                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-               <a href="/" class="nav-link">JOBBOARD</a>
+               <a href="/" class="nav-link">Home</a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
+            
+
+
+            <!--
+               <li class="nav-item d-none d-sm-inline-block">
                <a href="#" class="nav-link">Contact</a>
             </li>
+               
+             -->
+            
 
 
 
          </ul>
          <!-- Right navbar links -->
       </nav>
-      <!-- /.navbar -->
-
+      
+        <!-- /.navbar -->
 
       <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -107,7 +114,7 @@
                <li class="nav-item">
                   <a href="/dashboard/company-dashboard.php" class="nav-link">
                      <i class="nav-icon fas fa-home"></i>
-                     <p style="color: white;">Home</p>
+                     <p style="color: white;">Dashboard Home</p>
                   </a>
                </li>
 

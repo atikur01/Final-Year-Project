@@ -5,7 +5,6 @@ if($_SESSION["loggedin"] != true ){
   exit();
 }
 
-
 require '../dbconnect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -33,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $jobSalary = $_POST['jobSalary'];
   $deadline = $_POST['deadline'];
   $job_post_status = $_POST['job_post_status'];
-  
 
   // SQL query
   $sql = "INSERT INTO Job_Postings (
@@ -52,37 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       jobSalary,
       deadline,
       job_post_status
-  ) VALUES (
-      $company_id,
-      '$jobTitle',
-      '$location',
-      '$jobType',
-      '$jobDescription',
-      '$responsibilities',
-      '$eduExperience',
-      '$otherBenefits',
-      '$publishedOn',
-      $vacancy,
-      $experience,
-      '$gender',
-      '$jobSalary',
-      '$deadline',
-      '$job_post_status'
-  )";
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-  // Execute the query
-  if ($conn->query($sql) === TRUE) {
+  // Prepare the statement
+  $stmt = $conn->prepare($sql);
+
+  // Bind parameters
+  $stmt->bind_param("issssssssiissss", $company_id, $jobTitle, $location, $jobType, $jobDescription, $responsibilities, $eduExperience, $otherBenefits, $publishedOn, $vacancy, $experience, $gender, $jobSalary, $deadline, $job_post_status);
+
+  // Execute the statement
+  if ($stmt->execute()) {
     header("Location: viewjobpostings.php");
   } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      echo "Error: " . $stmt->error;
   }
+
+  // Close the statement
+  $stmt->close();
 
   // Close the connection
   $conn->close();
-  unset($_POST);
 }
-
-
 ?>
 
 <?php
@@ -92,13 +80,10 @@ include('header.php');
 <?php
 include('post-job-form.php');
 ?>
-  
 
-  
 <br>
 <?php
 include('footer.php');
 ?>
-  
 </body>
 </html>

@@ -43,7 +43,7 @@
         '&sup3;', '&acute;', '&micro;', '&para;', '&middot;',
         '&cedil;', '&sup1;', '&ordm;', '&raquo;', '&frac14;',
         '&frac12;', '&frac34;', '&iquest;', '&times;', '&divide;',
-        '&fnof;', '&circ;', '&tilde;', '&ndash;', '&mdash;',
+        '&fnof;', '&circ;', '&tilde;', '&ndash;', '  ;',
         '&lsquo;', '&rsquo;', '&sbquo;', '&ldquo;', '&rdquo;',
         '&bdquo;', '&dagger;', '&Dagger;', '&bull;', '&hellip;',
         '&permil;', '&prime;', '&Prime;', '&lsaquo;', '&rsaquo;',

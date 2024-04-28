@@ -63,62 +63,11 @@
       </div>
       <!-- .site-mobile-menu -->
       <!-- NAVBAR -->
-      <header class="site-navbar mt-3">
-        <div class="container-fluid">
-          <div class="row align-items-center">
-            <div class="site-logo col-6">
-              <a href="index.php">JobBoard</a>
-            </div>
-            <nav class="mx-auto site-navigation">
-              <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                <li>
-                  <a href="index.php" class="nav-link">Home</a>
-                </li>
-                <li>
-    
-                </li>
-
-                <li >
-                <a href="job-listings.php">Job Listings</a>
-                <!--
-                  <li class="has-children">
-                     <a href="job-listings.php">Job Listings</a>
-                  
-
-                -->
-                
-              </li>
+      <?php
+      include('navbar.php');
+    ?>
 
 
-              <li><a href="dashboard/company-dashboard.php">Dashboard</a></li>
-                
-               
-                <li class="d-lg-none">
-                  <a href="dashboard/post-job.php">
-                    <span class="mr-2">+</span> Post a Job </a>
-                </li>
-                <li class="d-lg-none"><a href="#" onclick="window.location.href='login.php'; return false;">Log In</a></li>
-              <li class="d-lg-none"><a href="#" onclick="window.location.href='signup.php'; return false;">Sign Up</a></li>
-              </ul>
-            </nav>
-            <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-              <div class="ml-auto">
-                <a href="dashboard/post-job.php" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block">
-                  <span class="mr-2 icon-add"></span>Post a Job </a>
-               
-
-                  <a href="login.php" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
-              <a href="signup.php" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="icon-user-plus"></span> Sign Up</a>
-
-                 
-              </div>
-              <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3">
-                <span class="icon-menu h3 m-0 p-0 mt-2"></span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
       <!-- HOME -->
       <section class="section-hero home-section overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section"></section>
       <section class="site-section" id="next">
@@ -195,15 +144,17 @@ if ($result->num_rows > 0) {
           </ul>
         </div>
       </section>
+
+
       <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-8">
               <h2 class="text-white">Looking For A Job?</h2>
-              <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
+              <p class="mb-0 text-white lead"></p>
             </div>
             <div class="col-md-3 ml-auto">
-              <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+              <a href="signup.php" class="btn btn-warning btn-block btn-lg">Sign Up</a>
             </div>
           </div>
         </div>
@@ -292,7 +243,7 @@ if ($result->num_rows > 0) {
                 <small>
                   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> Copyright &copy; <script>
                     document.write(new Date().getFullYear());
-                  </script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                  </script> All rights reserved </a>
                   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </small>
               </p>

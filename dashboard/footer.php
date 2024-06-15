@@ -76,7 +76,7 @@
         new DataTable('#example1', {
                 searching: true,
                 lengthChange: false,
-                lengthMenu: [5],
+                lengthMenu: [6],
 
                 "order": [[0, "desc"]] 
 

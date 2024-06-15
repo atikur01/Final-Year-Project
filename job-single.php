@@ -120,7 +120,10 @@ function replaceDotWithTag($inputString) {
                 
               </div>
               <div class="col-6">
-                <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
+             
+              <a href="apply-job.php?job_post_id=<?php echo $row['job_post_id']; ?>&company_id=<?php echo $row['companyid']; ?>" class="btn btn-block btn-primary btn-md">Apply Now</a>
+
+              
               </div>
             </div>
           </div>

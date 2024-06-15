@@ -9,14 +9,10 @@ $_SESSION = array();
 session_destroy();
 
 // Unset all POST variables
-foreach ($_POST as $key => $value) {
-    unset($_POST[$key]);
-}
+unset($_POST);
 
 // Unset all FILES variables
-foreach ($_FILES as $key => $value) {
-    unset($_FILES[$key]);
-}
+unset($_FILES);
 
 // Redirect to the login page
 header("Location: ../login.php");

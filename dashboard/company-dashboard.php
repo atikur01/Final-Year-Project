@@ -48,6 +48,8 @@ if ($resultUnpublish->num_rows > 0) {
 }
 
 
+$sqlApplications = "SELECT COUNT(id) as applications FROM applications WHERE companyid = $companyId"; 
+$resultUnpublish = $conn->query($sqlUnpublish);
 
 
 
@@ -83,9 +85,10 @@ include('header.php');
         <!-- small box -->
         <div class="small-box bg-warning" style="text-align: center;">
           <div class="inner">
-            <h3>0<sup style="font-size: 20px"></sup></h3>
+            <h3><?php echo $totalUnpublish ?><sup style="font-size: 20px"></sup></h3>
             <p>Total Applications Received</p>
           </div>
+          <h3></h3>
           <!--<div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>-->
@@ -97,7 +100,7 @@ include('header.php');
         <!-- small box -->
         <div class="small-box bg-success" style="text-align: center;">
           <div class="inner">
-            <h3><?php echo $totalpublish?></h3>
+            <h3><?php echo $totalpublish?> </h3>
             <p>Total Published Jobs</p>
           </div>
           <!--<div class="icon">

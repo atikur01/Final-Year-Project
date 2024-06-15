@@ -1,0 +1,17 @@
+{
+    "name": "asus/htdocs",
+    "autoload": {
+        "psr-4": {
+            "Asus\\Htdocs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Atikur",
+            "email": "coc13259@gmail.com"
+        }
+    ],
+    "require": {
+        "naneau/php-obfuscator": "^0.0.5"
+    }
+}

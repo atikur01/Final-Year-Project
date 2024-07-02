@@ -25,7 +25,7 @@
                <!-- /.card-header -->
                <div class="card-body">
                   <div class="table-responsive">
-                  <h2>View Applicants</h2>
+                  <h2>View Applied Jobs</h2>
                      <table id="example1" class="table table-bordered table-striped">
                         <thead>
                            <tr style="text-align: center;">

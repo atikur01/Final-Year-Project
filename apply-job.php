@@ -159,7 +159,7 @@ $conn->close();
 
 
             <div class="container mt-5">
-        <h2>Apply for Job</h2>
+        <h2>Apply for a Job</h2>
         <form id="jobApplicationForm" action="apply-job.php" method="post" enctype="multipart/form-data" novalidate>
             <input type="hidden" name="job_post_id" value="41">
             <div class="form-group">
